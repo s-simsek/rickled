@@ -1,0 +1,12 @@
+*.ipynb
+episode_data.pickle
+deneme.ipynb
+history.txt
+.venv
+scratch.py
+Lib/
+venv/
+.idea/
+.ipynb_checkpoints/
+__pycache__/
+__pypackages__/
