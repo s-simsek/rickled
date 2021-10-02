@@ -111,10 +111,6 @@ class Watch(History):
         @param provider: If True, forces the user select an existing provider
         @return: the corrected input, an int value
         """
-        # TODO: try to create a separate input corrector for each usage form, i.e., season,
-        #       episode, removing, provider
-        #       You can also create a different custom exception for argument errors like
-        #       ProviderCommandError, EpisodeCommandError, SeasonCommandError, RemovalCommandError
         while type(user_input) == str:
             if user_input == 'exit':
                 sys.exit()
