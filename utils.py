@@ -9,8 +9,8 @@ def get_key(string, dictionary: dict) -> list:
     @param string: string value to look for
     @param dictionary: a 2D dictionary
     @return: a 2 element list
-    >>> from seasons import data
-    >>> get_key("Pickle Rick", data)
+    >>> from episode_scrapper import EpisodeData
+    >>> get_key("Pickle Rick", EpisodeData().episode_data)
     [3, 3]
     """
     for season_number, season_dict in dictionary.items():

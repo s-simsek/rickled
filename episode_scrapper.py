@@ -74,7 +74,7 @@ class EpisodeData:
 
         t = threading.Thread(target=animate)
         t.start()
-        time.sleep(3)
+        time.sleep(1)
         self.scrap()
         self.season_length = len(self.episode_data)
         done = True

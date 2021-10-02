@@ -97,8 +97,8 @@ class Watch(History):
         self.removal = {}
 
     def input_corrector(self, user_input, selected_season=None,
-                        binary=False, season=False,
-                        episode=False, removing=False, provider=False):
+                        binary=False, season=False, episode=False,
+                        removing=False, provider=False) -> int:
         """
         An input correction method
         @param user_input: user input, a string value
@@ -279,24 +279,19 @@ class Watch(History):
     def pure_chance(self):
         """Randomly chooses episodes and stores it in self.duals"""
         copied_data, all_episodes = self.randomization_preprocessing()
-        quantity = self.episode_quantity
-        random_episodes = random.sample(all_episodes, quantity)
+        random_episodes = random.sample(all_episodes, self.episode_quantity)
         for index, elem in enumerate(random_episodes):
             self.duals[index] = get_key(elem, self.full_season_info)
 
     def episode_statements(self):
         """Prints out the recommended episodes"""
         print('\n        --- Recommended Episodes ---')
-        for index, elem in enumerate(self.duals.values()):
-            if index == 0:
-                print("\nFirst chosen episode: '{}'".format(self.full_season_info[elem[0]][elem[1]]),
-                      "from season", elem[0])
-            elif index == 1:
-                print("\nSecond chosen episode: '{}'".format(self.full_season_info[elem[0]][elem[1]]),
-                      "from season", elem[0])
-            else:
-                print("\nThird chosen episode: '{}'".format((self.full_season_info[elem[0]][elem[1]])),
-                      "from season", elem[0])
+        for index, elem in enumerate(self.duals.values(), start=1):
+            print("\nChosen episode {}: '{}' from season {}".format(
+                index,
+                self.full_season_info[elem[0]][elem[1]],
+                elem[0]
+            ))
 
     def forth_and_back(self):
         """If desired, directs the user to first recommended episode"""
@@ -315,21 +310,28 @@ class Watch(History):
         @param full_random: indicator of choosing from all existing episodes or not.
                             Implemented for the 'go' command"""
         self.duals = dict()
+
         if quantity:
             self.episode_quantity = quantity
             self.quantity_force()
         else:
             self.episode_quantity_decider()
-        if not full_random:
-            self.removal_decider()
+
         self.pure_chance()
-        # print(text('\nLoading', 2), end="\r")
-        print("Finally, here you go:")
-        self.episode_statements()
-        self.forth_and_back()
+
+        if full_random:  # if the command is 'go'
+            self.direct_website(self.episode_quantity)
+            self.duals = dict()
+        else:
+            self.removal_decider()
+            print(text('\nLoading', 2), end="\r")
+            print("Finally, here you go:")
+            self.episode_statements()
+            self.forth_and_back()
 
 
 class Visualize(Watch):
+    """Implemented for the display command"""
 
     def __init__(self, data):
         super().__init__(data)
@@ -340,16 +342,16 @@ class Visualize(Watch):
                 print('\n\t--- Season {} Episodes ---'.format(season_number))
                 for index, value in enumerate(self.full_season_info[season_number].items()):
                     if index == 0:
-                        print('\nEpisode {} -> {}'.format(value[0], value[1]))
+                        print('\n{} :-> {}'.format(value[0], value[1]))
                     else:
-                        print('Episode {} -> {}'.format(value[0], value[1]))
+                        print('{} :-> {}'.format(value[0], value[1]))
         else:
             print('\n--- Season {} Episodes ---'.format(argument))
             for index, value in enumerate(self.full_season_info[argument].items()):
                 if index == 0:
-                    print('\nEpisode {} -> {}'.format(value[0], value[1]))
+                    print('\n{} :-> {}'.format(value[0], value[1]))
                 else:
-                    print('Episode {} -> {}'.format(value[0], value[1]))
+                    print('{} :-> {}'.format(value[0], value[1]))
 
 
 class Precise(Visualize):
