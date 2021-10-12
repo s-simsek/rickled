@@ -1,6 +1,6 @@
 <h2> Rick and Morty Random Episode Thrower </h2>
 
-![](Rick-and-Morty-Season-4-Episode-7.png)
+![](r_m_2.png)
 
 
 Run main.py to run the program. You can type 'help' on the command screen to see available commands.
