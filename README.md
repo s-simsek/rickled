@@ -1,4 +1,4 @@
-<h2> Rick and Morty Random Episode Thrower </h2>
+<h2> A script for R & M fans </h2>
 
 ![](r_m_2.png)
 
