@@ -209,9 +209,6 @@ class Watch(History):
                 elif len(user_input) > len(self.full_season_info.keys()) - 1:
                     print('\nYou can not remove all the seasons')
                     user_input = input("> ")
-                elif len(user_input) == len(self.full_season_info.keys()) - 1:
-                    print("It would be easier for you, if you could use the 'precise' command next time")
-                    break
                 else:
                     break
 

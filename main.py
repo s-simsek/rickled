@@ -20,15 +20,17 @@ class Commands(Precise):
         while True:
             self.user_input = command_corrector(self.data, input('> '))
             self.full_season_info = self.data.copy()
-            if self.user_input[0] == 'watch':
+            if self.user_input[0] == 'watch':  # TODO: delete watch's additional argument
                 if len(self.user_input) == 1:
                     self.watch()
                 else:
                     episode_quantity = self.user_input[1]
                     self.watch(quantity=episode_quantity)
             elif self.user_input[0] == 'precise':
+                # TODO: for single precision command create another command called 'choose'
                 if len(self.user_input) == 1:
                     self.precise()
+                # TODO: use this part as an actual precise command
                 else:
                     season_number = self.user_input[1]
                     episode_number = self.user_input[2]
