@@ -48,11 +48,15 @@ Run main.py to run the program. You can type 'help' on the command screen to see
 - If the provided integer is greater than the length of the history, an exception is raised
 - If the second argument == 'all', all the history will be deleted
 
-8. `clear`
+10. `update`
+- Updates the Rick and Morty Episode data
+- Run this whenever a new season/episode comes out!
+
+9. `clear`
 
 - Clears the page
 
-9. `exit`
+10. `exit`
 
 - Closes the program
 
