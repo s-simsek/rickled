@@ -10,7 +10,7 @@ def get_key(string, dictionary: dict) -> list:
     @param dictionary: a 2D dictionary
     @return: a 2 element list
     >>> from episode_scrapper import EpisodeData
-    >>> get_key("Pickle Rick", EpisodeData().episode_data)
+    >>> get_key("Pickle Rick", EpisodeData().main_data)
     [3, 3]
     """
     for season_number, season_dict in dictionary.items():
@@ -30,58 +30,6 @@ def key_getter(val, my_dict: dict):
     for key, value in my_dict.items():
         if val == value:
             return key
-
-
-def reverse_prob_dist(prob_dist: list) -> list:
-    """Given a list, it reverses the position of the 1st max value with
-    1st min value; 2nd max value with 2nd min value, and so on...
-    >>> reverse_prob_dist([0.5, 0.3, 0.4, 0.1, 0.2])
-    [0.1, 0.3, 0.2, 0.5, 0.4]
-    >>> reverse_prob_dist([0.4, 0.3, 0.2, 0.1])
-    [0.1, 0.2, 0.3, 0.4]
-    >>> reverse_prob_dist([0.5, 0.3, 0.01, 0.8, 0.2])
-    [0.2, 0.3, 0.8, 0.01, 0.5]
-    >>> reverse_prob_dist([1,2,2,4])
-    [4, 2, 2, 1]
-    """
-    actual_positions = dict()
-    reversed_positions = dict()
-    desired_prob_dist = []
-    length_actual = len(prob_dist)
-
-    for index, elem in enumerate(prob_dist):
-        actual_positions[index] = elem
-
-    while len(prob_dist) != 0:
-        if max(prob_dist) != min(prob_dist):
-            max_elem = max(prob_dist)
-            min_elem = min(prob_dist)
-            max_elem_index = key_getter(max_elem, actual_positions)
-            min_elem_index = key_getter(min_elem, actual_positions)
-            reversed_positions[min_elem_index] = max_elem
-            reversed_positions[max_elem_index] = min_elem
-            prob_dist.remove(max_elem)
-            prob_dist.remove(min_elem)
-        else:
-            elem = max(prob_dist)
-            elem_index = key_getter(elem, actual_positions)
-            reversed_positions[elem_index] = elem
-            prob_dist.remove(elem)
-            del actual_positions[elem_index]
-            elem = max(prob_dist)
-            elem_index = key_getter(elem, actual_positions)
-            reversed_positions[elem_index] = elem
-            prob_dist.remove(elem)
-
-        if len(prob_dist) == 1:
-            last_item_index = key_getter(prob_dist[0], actual_positions)
-            reversed_positions[last_item_index] = prob_dist[0]
-            prob_dist.remove(prob_dist[0])
-
-    for i in range(length_actual):
-        desired_prob_dist.append(reversed_positions[i])
-
-    return desired_prob_dist
 
 
 def dizibox():

@@ -43,8 +43,8 @@ def command_corrector(data, user_input: str) -> list:
                     print('\n "precise" command takes no or 2 arguments')
                     user_input = input("> ")
                 elif len(command_input) == 3:
-                    season_number = int(command_input[1])
-                    episode_number = int(command_input[2])
+                    season_number = command_input[1]
+                    episode_number = command_input[2]
                     if season_number not in data.keys():
                         print('\nPlease, enter a valid season number')
                         user_input = input('> ')
@@ -60,7 +60,7 @@ def command_corrector(data, user_input: str) -> list:
                 if len(command_input) == 1:
                     return [first_arg]
                 elif len(command_input) == 2:
-                    second_arg = int(command_input[1])
+                    second_arg = command_input[1]
                     if second_arg < 0:
                         raise ValueError
                     else:
@@ -78,8 +78,8 @@ def command_corrector(data, user_input: str) -> list:
                     second_arg = command_input[1]
                     if second_arg == 'all':
                         return [first_arg, second_arg]
-                    elif int(second_arg) and int(second_arg) in data.keys():
-                        return [first_arg, int(second_arg)]
+                    elif second_arg and second_arg in data.keys():
+                        return [first_arg, second_arg]
                     else:
                         raise ValueError
                 else:
@@ -90,8 +90,8 @@ def command_corrector(data, user_input: str) -> list:
                     second_arg = command_input[1]
                     if second_arg == 'all':
                         return [first_arg, second_arg]
-                    elif int(second_arg):
-                        return [first_arg, int(second_arg)]
+                    elif second_arg:
+                        return [first_arg, second_arg]
                     else:
                         raise ValueError
                 else:

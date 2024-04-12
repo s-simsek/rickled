@@ -10,7 +10,7 @@ class Commands(Precise):
 
     def __init__(self):
         episode_info = EpisodeData()
-        self.data = episode_info.episode_data
+        self.data = episode_info.main_data
         super().__init__(self.data)
 
     def engine(self):
@@ -59,5 +59,4 @@ class Commands(Precise):
 
 if __name__ == "__main__":
     initiation = Commands()
-    sp.call('cls', shell=True)
     initiation.engine()

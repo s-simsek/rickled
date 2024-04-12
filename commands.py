@@ -330,21 +330,21 @@ class Visualize(Watch):
         super().__init__(data)
 
     def display(self, argument):
+        def show_season_episode(season_num):
+            for index, value in enumerate(self.full_season_info[season_num].items()):
+                if index == 0:
+                    print(f'\n{value[0]} :-> {value[1]["title"]}, {float(value[1]["rating"])}')
+                else:
+                    print(f'{value[0]} :-> {value[1]["title"]}, {float(value[1]["rating"])}')
+
         if argument == 'all':
             for season_number in self.full_season_info.keys():
-                print('\n\t--- Season {} Episodes ---'.format(season_number))
-                for index, value in enumerate(self.full_season_info[season_number].items()):
-                    if index == 0:
-                        print('\n{} :-> {}'.format(value[0], value[1]))
-                    else:
-                        print('{} :-> {}'.format(value[0], value[1]))
+                print(f'\n\t--- Season {season_number} Episodes ---')
+                show_season_episode(season_number)
+
         else:
-            print('\n--- Season {} Episodes ---'.format(argument))
-            for index, value in enumerate(self.full_season_info[argument].items()):
-                if index == 0:
-                    print('\n{} :-> {}'.format(value[0], value[1]))
-                else:
-                    print('{} :-> {}'.format(value[0], value[1]))
+            print(f'\n--- Season {argument} Episodes ---')
+            show_season_episode(argument)
 
 
 class Precise(Visualize):
